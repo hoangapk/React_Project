@@ -100,3 +100,6 @@ export const MENU = [
         path: "/todolist",
     },
 ] 
+
+export const upload_present = "hoangapk";
+export const cloud_name = "ddvzrqpna";

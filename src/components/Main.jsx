@@ -1,23 +1,27 @@
-import React from 'react';
-import { PRODUCTS, AIRCONDITIONER } from '../utils/Contains';
+import React, { useContext } from 'react';
 import { IoIosWater } from 'react-icons/io';
 import { RiGeminiFill } from 'react-icons/ri';
-import { FaCamera } from 'react-icons/fa';
+import { FaAppStoreIos, FaCamera } from 'react-icons/fa';
 import { TbPhotoSensor3 } from 'react-icons/tb';
 import { MdSensors } from 'react-icons/md';
+import { ProductContext } from '../contexts/ProductProvider';
+import { AIRCONDITIONER } from '../utils/Contains';
 
 
 function Main(props) {
+    const { products } = useContext(ProductContext);
+
     return (
         <div>
             <h2 className='font-bold text-3xl px-6 mt-20'>Choose the right upgrade</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-stretch p-6 rounded-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-stretch p-6 rounded-2xl">
                 {
-                    PRODUCTS.map((item, index) => (
-                        <div class="group flex flex-col justify-between p-4 bg-white rounded-xl transition-all duration-300 hover:shadow-lg ">
+                    products && products.map((item, index) => (
+                        <div key={`products-${item.id || index}`} className="group flex flex-col justify-between p-4 bg-white rounded-xl transition-all duration-300 hover:shadow-lg ">
+                            {/* Nội dung thẻ bên trong giữ nguyên */}
                             <div className='flex mb-10'>
                                 <div className="div">
-                                    <img src={item.img} alt="" className='transition-all duration-300 group-hover:scale-110' />
+                                    <img src={item.imgUrl} alt="" className='transition-all duration-300 group-hover:scale-110' />
                                 </div>
                                 <div className='flex items-center justify-center flex-col gap-2'>
                                     <div className='flex flex-col items-center text-center'>
@@ -25,8 +29,8 @@ function Main(props) {
                                         <p className='text-xs'>Kháng bụi & nước IP54</p>
                                     </div>
                                     <div className='flex flex-col items-center text-center'>
-                                        <RiGeminiFill />
-                                        <p className='text-xs'>OneUI 7</p>
+                                        <FaAppStoreIos />
+                                        <p className='text-xs'>IOS 17</p>
                                     </div>
                                     <div className='flex flex-col items-center text-center'>
                                         <FaCamera />
@@ -41,7 +45,7 @@ function Main(props) {
                                     <p className='text-red-500 text-sm font-bold'>-11%</p>
                                 </div>
                                 <p className='font-bold'>{item.price}$</p>
-                                <p className='text-sm text-green-600 mb-3 h-5'>Discount {item.discount}$</p>
+                                <p className='text-sm text-green-600 mb-3 h-5'>Discount 19.99$</p>
                                 <p className='line-clamp-2 h-10 leading-tight'>{item.name}</p>
                             </div>
                         </div>
@@ -49,13 +53,14 @@ function Main(props) {
                 }
             </div>
             <h2 className='font-bold text-3xl px-6 mt-5'>Air conditioner</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-stretch p-6 rounded-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 items-stretch p-6 rounded-2xl">
                 {
                     AIRCONDITIONER.map((item, index) => (
-                        <div class="group flex flex-col justify-between p-4 bg-white rounded-xl transition-all duration-300 hover:shadow-lg ">
+                        <div key={`air-${item.id || index}`} className="group flex flex-col justify-between p-4 bg-white rounded-xl transition-all duration-300 hover:shadow-lg ">
+                            {/* Nội dung thẻ bên trong giữ nguyên */}
                             <div className='flex mb-10'>
                                 <div className="div">
-                                    <img src={item.img} alt="" className='w-50  transition-all duration-300 group-hover:scale-110'/>
+                                    <img src={item.img} alt="" className='w-50  transition-all duration-300 group-hover:scale-110' />
                                 </div>
                                 <div className='flex items-center justify-center flex-col gap-2'>
                                     <div className='flex flex-col items-center text-center'>
